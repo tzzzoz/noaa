@@ -1,4 +1,9 @@
 defmodule Weather.CLI do
+  @moduledoc """
+  Handle the command line parsing and dispatch
+  to the various functions that end up generating
+  a table of weather data for the corresponding command given
+  """
   @switchs [ 
     help:       :boolean,
     count:      :integer,
