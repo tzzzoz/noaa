@@ -1,6 +1,6 @@
 # Weather
 
-NOAA(National Oceanic and Atmospheric Administration) supplys web services to allow users to fetch weather measurements. This mini project is an exercise in the chapter 13 of the book [« Programming Elixir 1.3 »](https://pragprog.com/book/elixir13/programming-elixir-1-3). This helps me to get familiar with Elixir programming and organization of an Elixir project. It implemented only three important APIs of NOAA: `datasets`, `locations`, `data`. If you are interested, you can extend it through the implementation of other APIs.
+[NOAA](https://www.ncdc.noaa.gov/cdo-web/webservices/v2#gettingStarted)(National Oceanic and Atmospheric Administration) supplys a full of web services to allow users to fetch weather measurements. This mini project is an exercise in the chapter 13 of the book [« Programming Elixir 1.3 »](https://pragprog.com/book/elixir13/programming-elixir-1-3). This helps me to get familiar with Elixir programming and organization of an Elixir project. It implemented only three important APIs of NOAA: `datasets`, `locations`, `data`. If you are interested, you can extend it through the implementation of other APIs.
 
 ## Installation
 
