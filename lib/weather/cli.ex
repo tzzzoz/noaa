@@ -4,6 +4,8 @@ defmodule Weather.CLI do
   to the various functions that end up generating
   a table of weather data for the corresponding command given
   """
+  import Weather.Webservice, only: [datasets_url: 1, locations_url: 1, data_url: 1]
+  import Weather.TableFormatter, only: [print_table_for_columns: 2]
   @switchs [ 
     help:       :boolean,
     count:      :integer,
@@ -39,5 +41,38 @@ defmodule Weather.CLI do
 
   def parse_remains([]) do
     :help
+  end
+
+  def process(:help) do
+  end
+
+  def process(params) do
+    params
+    |> build_url
+    |> Weather.Webservice.fetch
+    |> decode_response
+    |> get_data
+    |> print
+  end
+
+  def build_url({:datasets, %{count: count}}), do: datasets_url(count)
+
+  def build_url({:locations, %{count: count}}), do: locations_url(count)
+
+  def build_url({:data, params}), do: data_url(params)
+
+  def decode_response({:ok, body}), do: body
+
+  def decode_response({:error, error}) do
+    {_, message} = List.keyfind(error, "message", 0)
+    IO.puts "Error fetching from NOAA: #{message}"
+    System.halt(2)
+  end
+
+  def get_data(%{"results" => rows}), do: rows
+
+  def print(rows=[head | _]) do
+    headers = Map.keys(head)
+    print_table_for_columns(rows, headers)
   end
 end
